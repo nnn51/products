@@ -10,3 +10,9 @@ while True:
 print(products)	
 
 products[0][0]   # prooducts清單中的第0格的第0個，第一項的name
+
+
+for p in products:
+	print(p)
+	print(p[0],'的價格是', p[1])
+	# p[0] 每一個小清單的第0格  /  p[1]每一個小清單的第1格
