@@ -1,4 +1,14 @@
+# 讀取檔案
 products = []
+with open('products.csv', 'r', encoding= 'utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue        # 繼續
+		name, price = line.strip().split(',')   # 先用strip()把換行符號去掉；再用line.split，以','當切割標準
+		products.append([name, price])
+print(products)
+
+# 讓使用者輸入
 while True:
 	name = input('請輸入商品名稱:')
 	if name == 'q':
@@ -9,15 +19,11 @@ while True:
 	products.append(p)	# 也可用products.append([name,price])	
 print(products)	
 
-products[0][0]   # prooducts清單中的第0格的第0個，第一項的name
-
-
+# 印出所有購買紀錄
 for p in products:
-	print(p)
-	print(p[0],'的價格是', p[1])
-	# p[0] 每一個小清單的第0格  /  p[1]每一個小清單的第1格
+	print(p[0],'的價格是', p[1])    # p[0] 每一個小清單的第0格  /  p[1]每一個小清單的第1格
 
-# 'abc' + '123' = 'abc123'
+# 寫入檔案
 with open('products.csv', 'w', encoding= 'utf-8') as f:  
 # 用寫入模式打開products.csv，並作為f(之後用到該檔案都以f代稱)
 # 因為是寫入模式w,若原本products.csv這個檔案，會自動創一個。
