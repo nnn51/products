@@ -1,12 +1,19 @@
+import os   # operating system
+
 # 讀取檔案
-products = []
-with open('products.csv', 'r', encoding= 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue        # 繼續
-		name, price = line.strip().split(',')   # 先用strip()把換行符號去掉；再用line.split，以','當切割標準
-		products.append([name, price])
-print(products)
+products = []   # 放在if外面，不論if的結果如何都不影響products=[]
+if os.path.isfile('products.csv'):  #檢查檔案在不在
+	print('yeah!找到檔案了!')
+	with open('products.csv', 'r', encoding= 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue        # 繼續
+			name, price = line.strip().split(',')   # 先用strip()把換行符號去掉；再用line.split，以','當切割標準
+			products.append([name, price])
+	print(products)
+
+else:		
+	print('找不到檔案>< ')
 
 # 讓使用者輸入
 while True:
